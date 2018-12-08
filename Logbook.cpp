@@ -1,5 +1,8 @@
 #include <bits/stdc++.h>
+#include <ctime>
 #include "Logbook.h"
+Logbook::Logbook()
+{}
 Logbook::Logbook(int month, int year)
 {
   logMonth = month;
@@ -9,6 +12,17 @@ Logbook::Logbook(int month, int year)
   {
     putEntry(i,0);
   }
+}
+void Logbook::putEntry(int value)
+{
+  time_t tt;
+  struct tm * ti;
+  time(&tt);
+  ti = localtime(&tt);
+  logYear = ti->tm_year;
+  logMonth = ti->tm_mon;
+  int day = ti->tm_mday;
+  putEntry(day,value);
 }
 void Logbook::putEntry(int day, int value)
 {
